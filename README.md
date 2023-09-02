@@ -1,1 +1,1 @@
-# AI-Vortex
+# AI TOOLS DIRECTORY
