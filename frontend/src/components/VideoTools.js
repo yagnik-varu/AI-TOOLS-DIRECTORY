@@ -2,7 +2,15 @@ import React from 'react'
 
 function VideoTools() {
   return (
-    <div>VideoTools</div>
+    <div className='body'>VideoTools
+      fdgfdgdfdfsdd
+      fdsfsd
+      sdfdsf
+      dfsf
+      dfkjdlfjdsdf
+      fdsfsddfd
+      dfds
+    </div>
   )
 }
 
