@@ -40,6 +40,11 @@ function Header() {
             Favourite
           </a>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to='login'>
+            login
+          </Link>
+        </li>
       </ul> 
       {/* <Link to=''>Home</Link>
       <Link to='tools'>tool</Link>
