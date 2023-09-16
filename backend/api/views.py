@@ -2,10 +2,10 @@ from django.shortcuts import render
 from firebase_admin import credentials, initialize_app, firestore
 from django.http import HttpResponse
 from django.http import JsonResponse
-import os
+import os, json
 import requests
 from bs4 import BeautifulSoup
-SecretKey_path="D:/Sem-4 project/AI-TOOLS-DIRECTORY/backend/api/secretKey.json"
+SecretKey_path="C:/collage work/AI-TOOLS-DIRECTORY/backend/api/secretKey.json"
 
 cred = credentials.Certificate(SecretKey_path)
 
@@ -40,40 +40,52 @@ def authentication(request):
 
 
 def migrations(request):
-    website="https://easywithai.com/free-ai-image-generators/" #url
-    result=requests.get(website) #response
-    content=result.text
-    soup=BeautifulSoup(content,'html.parser')
 
     l=[]
-    block1=soup.find_all('article',class_="elementor-post")
-    print(len(block1))
-    for i in range(len(block1)):
-        d={}
-        goToLink=block1[i].find("a",href=True).get("href")
-        name=block1[i].find("h3",class_="elementor-post__title").text.strip()
-        print(name)
-        
+    for j in range(1,5):
+        website="https://easywithai.com/ai-image-generators/"+"page/"+str(j) #url
+        result=requests.get(website) #response
+        content=result.text
+        soup=BeautifulSoup(content,'html.parser')
 
-        result=requests.get(goToLink) #response
-        content2=result.text
-        # url=goToLink
-        # page=urllib.request.urlopen(url)
-        soup2=BeautifulSoup(content2,'html.parser')
+    
+        block1=soup.find_all('article',class_="elementor-post")
+        print(len(block1))
+        for i in range(len(block1)):
+            d={}
+            goToLink=block1[i].find("a",href=True).get("href")
+            name=block1[i].find("h3",class_="elementor-post__title").text.strip()
+            print(name)
+            
 
-        box3=soup2.find_all("div",class_="elementor-widget-container")
-        # print(box3[4].prettify())
-        sitelink=box3[4].find("a").get("href")
-        imagelink=box3[4].find("a").find("img").get("src")
-        print(sitelink)
-        print(imagelink)
-        description=box3[4].find("p").text
-        print(description)
-        d={"name":name,"toolLink":sitelink,"imageLink":imagelink,"description":description}
-        l.insert(0,d)
-        
-    for i in l:
-        i["tool_count"] = 0
-        # i["tool_keyword"] = ""
-        root_ref_tool.add(i)
+            result=requests.get(goToLink) #response
+            content2=result.text
+            # url=goToLink
+            # page=urllib.request.urlopen(url)
+            soup2=BeautifulSoup(content2,'html.parser')
 
+            box3=soup2.find_all("div",class_="elementor-widget-container")
+            # print(box3[4].prettify())
+            sitelink=box3[4].find("a").get("href")
+            try:
+                imagelink=box3[4].find("a").find("img").get("src")
+            except Exception as e:
+                print(e)
+                continue
+            print(sitelink)
+            print(imagelink)
+            description=box3[4].find("p").text
+            print(description)
+            d={"tool_name":name,"tool_link":sitelink,"image_link":imagelink,"tool_description":description,'tool_count':0}
+            l.insert(0,d)
+
+    root_ref_tool.document("image").update({
+        "imageGenerators": l
+    })
+    
+    return HttpResponse("ok")
+
+def data(request):
+    array=root_ref_tool.document("image").get(field_paths={'imageupscalers'}).to_dict()
+    print(array)
+    return HttpResponse(json.dumps(array))

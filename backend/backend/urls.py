@@ -6,5 +6,6 @@ from api import views as views_api
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/",views_api.authentication),
-    path("migrate/",views_api.migrations)
+    path("migrate/",views_api.migrations),
+    path("data/",views_api.data)
 ]
