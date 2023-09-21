@@ -86,6 +86,13 @@ def migrations(request):
     return HttpResponse("ok")
 
 def data(request):
-    array=root_ref_tool.document("image").get(field_paths={'imageupscalers'}).to_dict()
-    print(array)
+    field={"Image upscallers":"imageupscalers","Image Genrators":"imageGenerators","Image Editors":"imageEditors",
+           "Voice":"voice","Audio":"audio","Design":"design","Music":"music","Make presentation":"presentationMaker"}
+    # doc={"image_key":"image","media_key":"media","voice_key":"voice","coding_key":"coding","chatbots_key":"chatbots"}
+    req=request.GET
+    fieldname=field[req.get("keyFeild")]
+    docname=req.get("keyDoc")
+    array=root_ref_tool.document(docname).get(field_paths={fieldname}).to_dict()
     return HttpResponse(json.dumps(array))
+
+# def details(request,id):

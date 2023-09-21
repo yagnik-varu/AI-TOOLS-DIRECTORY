@@ -14,11 +14,6 @@ function CardDetail() {
         <div className='p-5 container border border-danger d-flex aligns-items-center justify-content-center'>
           <a className='btn btn-success'></a>
         </div>
-
-        
-        
-
-
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 function CardFormate(props) {
   return (
     <Card style={{ width: 'auto' }} className='bg-dark mt-4 m-2'>
-      <Card.Img variant="top" src="https://easywithai.com/storage/2022/12/Dream-by-Wombo-1024x856.png" />
+      <Card.Img variant="top" src={props.image} style={{height: "200px"}}  />
       <Card.Body>
         <Card.Title className='text-light'>{props.name}</Card.Title>
         <Card.Text className='text-light' >
@@ -18,9 +18,10 @@ function CardFormate(props) {
       </ListGroup>
       <Card.Body>
         {/* <Card.Link to="carddetail">know more</Card.Link> */}
-        <Link className="btn btn-primary text-light" to="carddetail">
+        <Link className="btn btn-primary text-light" to="/carddetail" >
             know more
           </Link>
+          
         
       </Card.Body>
     </Card>
