@@ -1,24 +1,25 @@
+
 import React, { useEffect, useState } from 'react'
 import CardFormate from './CardFormate'
 import { Grid, Card, CardContent, Typography, CardHeader } from '@mui/material';
 import axios from 'axios';
 import { ClassNames } from '@emotion/react';
 
-function ImageTools() {
+function MediaTools() {
 
   const [data, setData] = useState([])
   // const [key, setKey] = useState("")
   const [checkData, setCheckData] = useState(false)
 
   const nav_key = {
-    image: ["Image upscaller", "Image Genrators", "Image Editors"]
+    media: ["Audio", "Design", "Music", "Make presentation"]
   }
 
   function http_tool(e) {
     axios.get('http://127.0.0.1:8000/data/', {
       params: {
         keyFeild: e,
-        keyDoc: "image"
+        keyDoc: "media"
       }
     })
       .then(response => {
@@ -35,27 +36,27 @@ function ImageTools() {
     setData(data)
     // data && setKey(Object.keys(data)[0])
   }, [data])
-
   return (
     <>
-      <div className='mt-1000 pt-500'>
-        kfkfk
-        dfkjglkjf
-        fkldjflkjd
-        ldkjfl
-        dsljdgl
-        dkdsjf;;'
-      </div>
+    <div className='body'>MediaTools
+      fdgfdgdfdfsdd
+      fdsfsd
+      sdfdsf
+      dfsf
+      dfkjdlfjdsdf
+      fdsfsddfd
+      dfds
+    </div>
 
 
 
-      <button onClick={() => http_tool()}>button</button>
+    <button onClick={() => http_tool()}>button</button>
       {/* rander sub navbar  */}
       {
         (<div className='p-40'>
 
           {
-            nav_key["image"].map((e) => (
+            nav_key["media"].map((e) => (
               <button onClick={() => http_tool(e)}>{e}</button>
             ))
           }
@@ -83,8 +84,12 @@ function ImageTools() {
           </>
         )
       }
+
+
     </>
+    
+    
   )
 }
 
-export default ImageTools
+export default MediaTools

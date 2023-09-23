@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBro
 import Home from './pages/Home'
 import Tools from './pages/Tools'
 import ImageTools from './components/ImageTools'
-import VideoTools from './components/VideoTools'
+// import VideoTools from './components/VideoTools'
+import MediaTools from './components/MediaTools';
 import ChatbotTools from './components/ChatbotTools'
 import Favourite from './pages/Favourite'
 import Login from './pages/Login'
@@ -23,12 +24,13 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
 
-                <Route path='tools'>
-                    <Route path='' element={<ImageTools />} />
+                {/* <Route path='tools'> */}
+                    {/* <Route path='' element={<ImageTools />} /> */}
                     <Route path='image' element={<ImageTools/>} />
-                    <Route path='video' element={<VideoTools />} />
+                    <Route path='media' element={<MediaTools/>} />
+                    {/* <Route path='media' element={<VideoTools />} /> */}
                     <Route path='chatbot' element={<ChatbotTools />} />
-                    </Route>
+                    {/* </Route> */}
 
                 <Route path="favourite" element={<Favourite/>}></Route>
 

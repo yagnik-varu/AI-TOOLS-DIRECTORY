@@ -18,7 +18,7 @@ function Login() {
       setName(data.user.displayName)
       setEmail(data.user.email)
       setProfile_uri(data.user.photoURL)
-      // localStorage.setItem("email", data.user.email)
+      localStorage.setItem("email", data.user.email)
 
       axios.get(django_url + "/auth", {
         params: {
@@ -31,14 +31,14 @@ function Login() {
   }
 
   const logout = () => {
-    // localStorage.clear()
+    localStorage.clear()
     window.location.reload()
   }
 
 
-  // useEffect(() => {
-  //   setEmail(localStorage.getItem('email'))
-  // },[])
+  useEffect(() => {
+    setEmail(localStorage.getItem('email'))
+  },[])
 
 
   return (
