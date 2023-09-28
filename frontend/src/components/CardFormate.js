@@ -2,10 +2,13 @@ import { Card, Button } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import {Link} from "react-router-dom";
 import React, { useState } from 'react';
+import "../App.css"
 
 import { Favorite } from '@mui/icons-material';
 
 function CardFormate(props) {
+
+  const style={"fontWeight":"400","fontSize":"20px","background":"#FF4820","border":"2px solid #FF4820","padding":"0 1rem","color":"#fff","cursor":"pointer","outline":"none"}
 
   const [likes, setLikes] = useState(0);
 
@@ -22,8 +25,8 @@ function CardFormate(props) {
 
 
   return (
-    <Card style={{ width: 'auto' }} className='bg-dark mt-4 m-2'>
-      <Card.Img variant="top" src={props.image} style={{height: "200px"}}  />
+    <Card style={{ width: 'auto',backgroundColor: 'rgba(4, 44, 84, 1)' }} className='mt-3 m-2'  bg=''>
+      <Card.Img variant="top" src={props.image} style={{height: "250px"}}  />
       <Card.Body>
         <Card.Title className='text-light'>{props.name}</Card.Title>
         <Card.Text className='text-light' >
@@ -31,12 +34,12 @@ function CardFormate(props) {
           bulk of the card's content.
         </Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush bg-dark">
-        <ListGroup.Item className='bg-dark text-light'>Cras justo odio</ListGroup.Item>
+      <ListGroup className="list-group-flush" >
+        <ListGroup.Item className='text-light' style={{backgroundColor: 'rgba(4, 44, 84, 1)'}} >Cras justo odio</ListGroup.Item>
       </ListGroup>
       <Card.Body>
         {/* <Card.Link to="carddetail">know more</Card.Link> */}
-        <Link className="btn btn-primary text-light" to="/carddetail" onClick={cardDetails(props.name)}>
+        <Link className="btn click-button text-light" style={style} to="/carddetail" onClick={() => cardDetails(props.name)}>
             know more
           </Link>
           <Button

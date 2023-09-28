@@ -1,16 +1,144 @@
-.background-banner {
+/* .background-banner {
     height: auto;
     width: 100%;
     text-align: center;
-    /* padding-top: 100px; */
+    padding-top: 100px;
     color: white;
     overflow: hidden;
-    background: #605252;  /* fallback for old browsers */
-    background: linear-gradient(rgba(27, 27, 27, 0.8), rgba(3, 93, 118, 0.443)), url("./img/Background.jpg");  /* Chrome 10-25, Safari 5.1-6 */
-    /* background: linear-gradient(rgba(71, 57, 71, 0.272), rgba(157, 137, 137, 0.251)), url("data:image/jpeg;base64,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");  */
+    background: #605252;  
+    background: linear-gradient(rgba(27, 27, 27, 0.8), rgba(3, 93, 118, 0.443)), url("./img/Background.jpg");  
     background-size:100%;
     background-repeat: no-repeat;
 }
 .body{
     padding-top: 65px;
+} */
+
+
+.App {
+    text-align: center;
+    margin-top: -50;
+  }
+  
+  .centered-text {
+    font-size:200%;
+    font-family: var(--font-family);
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  }
+  
+  .center-image {
+    /* margin-top: 5px; */
+    height: auto;
+    width: 100%; 
+  }
+
+*{
+  box-sizing:border-box;
+  padding:0;
+  margin:0;
+  scroll-behavior: smooth;
+  
 }
+.home{
+  /* background:-moz-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%); */
+
+  /* safari 5.1+,chrome 10+ */
+  /* background:-webkit-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%); */
+
+  /* opera 11.10+ */
+  /* background:-o-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%); */
+
+  /* ie 10+ */
+  /* background:-ms-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%); */
+
+  /* global 92%+ browsers support */
+  background:radial-gradient(circle at 25% 20%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
+  min-height: 700px;
+  z-index: -1;
+}
+
+
+.navbar .nav-link {
+  color: white !important; /* Set the text color to white */
+}
+
+.navbar-toggler-icon {
+  background-color: white !important; /* Set the hamburger icon color to white */
+}
+
+.header-color {
+  /* background-color: rgba(255, 255, 255, 0.8); Set the background color with opacity */
+  backdrop-filter: blur(5px); /* Apply the blur effect */
+  -webkit-backdrop-filter: blur(5px); /* For compatibility with some browsers */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.home-image img{
+  width: 200%;
+  height: auto;
+}
+
+.latest-content h1{
+  color: var(--color-text);
+  text-shadow: chocolate;
+}
+
+
+.click-button{
+  font-family: var(--font-family);
+  background: #FF4820;
+  border: 2px solid #FF4820;
+  cursor: pointer;
+    outline: none;
+
+}
+
+
+/* navbar */
+
+
+
+.header-color-scroll{
+  background:rgb(2,27,56);
+  backdrop-filter: blur(10px);
+}
+
+.header-color{
+  background: transparent;
+  /* background:radial-gradient(circle at 30% -100%, #042c54 25%, rgba(4, 44, 84, 1) 85%, rgba(27, 120, 222, 1) 100%); */
+
+}
+
+.card-container{
+  box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;
+}
+
+.card-details{
+  margin-top: 100px;
+  font-family: var(--font-family);
+  
+}
+
+.text_color{
+  color: var(--color-text);
+
+
+}
+
+
+
+
+
+

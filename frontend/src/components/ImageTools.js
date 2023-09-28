@@ -3,12 +3,13 @@ import CardFormate from './CardFormate'
 import { Grid, Card, CardContent, Typography, CardHeader } from '@mui/material';
 import axios from 'axios';
 import { ClassNames } from '@emotion/react';
+import "C:/collage work/AI-TOOLS-DIRECTORY/frontend/src/App.css"
 
-function ImageTools() {
-
+function ImageTools(props) {
   const [data, setData] = useState([])
   // const [key, setKey] = useState("")
   const [checkData, setCheckData] = useState(false)
+  const [currKey, setCurrKey] = useState("Image Editors")
 
   const nav_key = {
     image: ["Image upscaller", "Image Genrators", "Image Editors"]
@@ -36,36 +37,45 @@ function ImageTools() {
     // data && setKey(Object.keys(data)[0])
   }, [data])
 
+  useEffect(() => {
+    if(localStorage.getItem("curr_key")){
+      http_tool(localStorage.getItem('curr_key'))
+    }else  http_tool(currKey)
+  }, [currKey])
+
+  
+  window.addEventListener("unload", function(event) { localStorage.removeItem('curr_key'); });
+
   return (
     <>
-      <div className='mt-1000 pt-500'>
-        kfkfk
-        dfkjglkjf
-        fkldjflkjd
-        ldkjfl
-        dsljdgl
-        dkdsjf;;'
-      </div>
+     
 
+    <div className='mt-5'>
+      
+      
 
-
-      <button onClick={() => http_tool()}>button</button>
+      {/* <button onClick={() => http_tool()}>button</button> */}
       {/* rander sub navbar  */}
       {
-        (<div className='p-40'>
+        (<div className='mt-5' style={{}}>
 
           {
             nav_key["image"].map((e) => (
-              <button onClick={() => http_tool(e)}>{e}</button>
+              <button onClick={() => {
+                http_tool(e)
+                localStorage.setItem("curr_key", e)
+              }
+              }>{e}</button>
             ))
           }
 
         </div>)
       }
 
-
+      
       {
-        data && (
+        
+           data && (
           <>
             {console.log("data is in")}
             <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start" padding={5}>
@@ -82,7 +92,10 @@ function ImageTools() {
 
           </>
         )
+        
+       
       }
+      </div>
     </>
   )
 }

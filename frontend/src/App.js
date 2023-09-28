@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from './pages/Home'
 import Tools from './pages/Tools'
@@ -12,10 +12,10 @@ import Header from './components/Header'
 import CardDetail from './components/CardDetail';
 import './App.css' 
 
-
 function App() {
+
     return (
-        <>
+        <div className='body'>
         
     
         
@@ -26,7 +26,7 @@ function App() {
 
                 {/* <Route path='tools'> */}
                     {/* <Route path='' element={<ImageTools />} /> */}
-                    <Route path='image' element={<ImageTools/>} />
+                <Route path='image' element={<ImageTools/>} />
                     <Route path='media' element={<MediaTools/>} />
                     {/* <Route path='media' element={<VideoTools />} /> */}
                     <Route path='chatbot' element={<ChatbotTools />} />
@@ -40,7 +40,7 @@ function App() {
 
             </Routes>
         </Router>
-        </>
+        </div>
     )
 }
 

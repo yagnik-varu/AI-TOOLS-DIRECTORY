@@ -36,11 +36,13 @@ function Header() {
   // const [colorChange,setColorChange] = useState(false)
 
   var isLoggedIn = false
-  if (localStorage.getItem('email')) { isLoggedIn = true }
+  if (localStorage.getItem('email')) {
+     isLoggedIn = true 
+    console.log(localStorage.getItem('email'))}
 
   const [colorChange, setColorchange] = useState(false);
   const changeNavbarColor = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 100) {
       setColorchange(true);
     }
     else {
@@ -107,21 +109,21 @@ function Header() {
 
 
 
-      <div >
-      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top' : 'header-color fixed-top'} bg="" data-bs-theme=" ">
-        <Container className='container-fluid'>
+      <div className=" container">
+      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top ' : 'header-color fixed-top'}  data-bs-theme=" ">
+        <Container className='container-fluid '>
           <Navbar.Brand>
-            <Link to=''>
-           <span className="app-logo text-dark"> AI TOOLS DIRECTORY</span>
+            <Link to='' className="text-decoration-none">
+           <span className=" text-light app-logo" > AI TOOLS DIRECTORY</span>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="me-7 gap-1.5 lg:gap-5">
-              {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><HomeIcon /> <span>Home</span></NavLink> */}
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><span>Home</span></NavLink>
               {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plants">home </NavLink> */}
               {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plantcare"><SpaIcon /> <span>Plant Care</span></NavLink> */}
-              <NavDropdown title={"tool"} className='nav-dropdown' id="nav-dropdown">
+              <NavDropdown title={"tool"} className='nav-dropdown' id="nav-dropdown" >
                 <NavDropdown.Item>
                   <NavLink className='navLink' to="image">Image</NavLink>
                 </NavDropdown.Item>
@@ -129,7 +131,7 @@ function Header() {
                   <NavLink className='navLink' to="media">Media</NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="login">
+              <NavLink className={colorChange ? 'navLink-scroll text-decoration-none text-light' : 'navLink text-decoration-none text-light'} to="login">
                 
                 {isLoggedIn ? 'LogOut' : 'Login'}
               </NavLink>
