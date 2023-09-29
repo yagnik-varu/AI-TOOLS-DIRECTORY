@@ -11,6 +11,7 @@ function Login() {
   const [profile_uri, setProfile_uri] = useState('')
 
 
+
   const handleClick = () => {
 
     signInWithPopup(auth, provider).then((data) => {
@@ -26,7 +27,10 @@ function Login() {
           u_email: data.user.email,
           u_profile_uri: data.user.photoURL
         }
-      }).then(response => console.log(response.data)).catch(error => console.log(error))
+      }).then(response =>{ 
+        console.log(response.data)
+        localStorage.setItem("favourite_tool", response.data["u_favourite_tool"][0]["u_favourite_tool"])
+      }).catch(error => console.log(error))
     })
   }
 

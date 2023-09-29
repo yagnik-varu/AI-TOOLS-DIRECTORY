@@ -81,9 +81,9 @@ function ImageTools(props) {
             <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start" padding={5}>
               {
 
-                checkData && data[Object.keys(data)[0]].map((i) => (
+                checkData && data[Object.keys(data)[0]].map((i,index) => (
                   <Grid item xs={12} sm={6} md={4} padding={2}>
-                    <CardFormate name={i.tool_name} link={i.tool_link} image={i.image_link} description={i.tool_description} />
+                    <CardFormate name={i.tool_name} link={i.tool_link} image={i.image_link} description={i.tool_description} index={index-1} document={currKey} collection={"image"}/>
                   </Grid>
                 ))
 

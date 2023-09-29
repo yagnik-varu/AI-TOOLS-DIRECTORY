@@ -19,7 +19,7 @@ def authentication(request):
     auth=request.GET
     # print(auth.u_email)
     print(auth)
-
+    
     user_id=[doc.id for doc in root_ref_user.stream()]
     if (not auth.get("u_email") in user_id):
         root_ref_user.document(auth.get("u_email")).set(
@@ -32,10 +32,12 @@ def authentication(request):
          )
     else:
         pass
+    favourite_tool = root_ref_user.document(auth.get("u_email")).get(field_paths={"u_favourite_tool"}).to_dict()
     
     return JsonResponse({"status":True,"u_email":auth.get("u_email"),
             "u_name":auth.get("u_name"),
-            "u_image":auth.get("u_profile_uri")})
+            "u_image":auth.get("u_profile_uri"),
+            "u_favourite_tool":[favourite_tool]})
 
 
 
@@ -95,4 +97,18 @@ def data(request):
     array=root_ref_tool.document(docname).get(field_paths={fieldname}).to_dict()
     return HttpResponse(json.dumps(array))
 
-# def details(request,id):
+def favourite(request):
+    req=request.GET
+    index=req.get("index")
+    document=req.get("document")
+    collection=req.get("collection")
+    user=req.get("currentUser")
+    link=document+"/"+collection+"/"+index
+    print(link,user)
+    root_ref_user.document(user).update({
+        "u_favourite_tool": firestore.ArrayUnion([link])
+    })
+    # documet_data=root_ref_user.document(user).get(transaction=transaction).to_dict()
+    return HttpResponse("data saved")
+
+

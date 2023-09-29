@@ -7,5 +7,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/",views_api.authentication),
     path("migrate/",views_api.migrations),
-    path("data/",views_api.data)
+    path("data/",views_api.data),
+    path("favourite/",views_api.favourite)
 ]

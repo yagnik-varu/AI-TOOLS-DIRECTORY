@@ -20,7 +20,11 @@ function CardFormate(props) {
     localStorage.setItem("tool_image",props.image)
     localStorage.setItem("tool_name",name)
     localStorage.setItem("tool_link",props.link)
+    localStorage.setItem("tool_index",props.index)
+    localStorage.setItem("tool_document",props.document)
+    localStorage.setItem("tool_collection",props.collection)
     localStorage.setItem("tool_description",props.description)
+
   }
 
 
@@ -42,11 +46,11 @@ function CardFormate(props) {
         <Link className="btn click-button text-light" style={style} to="/carddetail" onClick={() => cardDetails(props.name)}>
             know more
           </Link>
-          <Button
+          {/* <Button
           variant="outline-danger"
           onClick={handleLikeClick}>
           <Favorite /> add to favourite ({likes})
-        </Button>
+        </Button> */}
           
         
       </Card.Body>

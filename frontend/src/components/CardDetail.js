@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "C:/collage work/AI-TOOLS-DIRECTORY/frontend/src/App.css"
-
+import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
 import { Favorite } from '@mui/icons-material';
 
@@ -9,6 +9,12 @@ function CardDetail() {
   const [toolImage, setToolImage] = useState("")
   const [toolLink, setToolLink] = useState("")
   const [toolDescription, setToolDescription] = useState("")
+  const [toolDocument, setToolDocument] = useState("")
+  const [toolCollection, setToolCollection] = useState("")
+  const [toolIndex, setToolIndex] = useState("")
+  const [currentUser, setCurrentUser] = useState("")
+  const [buttonShow, setButtonShow] = useState(true)
+  const [favourite_tool, setFavourite_tool] = useState([])
 
 
   const cardDetails = () => {
@@ -16,12 +22,58 @@ function CardDetail() {
     setToolName(localStorage.getItem("tool_name"))
     setToolLink(localStorage.getItem("tool_link"))
     setToolDescription(localStorage.getItem("tool_description"))
+    setToolDocument(localStorage.getItem("tool_document"))
+    setToolCollection(localStorage.getItem("tool_collection"))
+    setToolIndex(localStorage.getItem("tool_index"))
+    setCurrentUser(localStorage.getItem("email"))
+    setFavourite_tool(localStorage.getItem("favourite_tool"))
+
   }
+
+  const favourite_handler = () => {
+    setButtonShow(false)
+    axios.get('http://127.0.0.1:8000/favourite/', {
+      params: {
+        index: toolIndex,
+        document: toolDocument,
+        collection: toolCollection,
+        currentUser: currentUser
+
+      }
+    })
+      .then(response => {
+        
+
+
+
+        console.log("add to favourite")
+
+      })
+
+  }
+
+  useEffect(() => {
+
+    if (favourite_tool.length > 0) {
+      let tmp = favourite_tool.split(",")
+      console.log(tmp)
+      for (var i of tmp) {
+        let tmp2 = i.split("/")
+        console.log(tmp2)
+        console.log(tmp2[0] === toolDocument,tmp2[1] === toolCollection , tmp2[2], toolIndex)
+        if (tmp2[0] === toolDocument && tmp2[1] === toolCollection && tmp2[2] === toolIndex) {
+          console.log("inside if")
+          setButtonShow(false)
+        }
+      }
+
+    }
+
+  }, [favourite_tool])
 
   useEffect(() => {
     cardDetails()
   }, [])
-
 
 
 
@@ -36,12 +88,16 @@ function CardDetail() {
           <img src={toolImage} width={"60%"} className='rounded'></img>
 
           <div>
-            <Button
-              variant="outline-danger"
-              className='float-end'
-            >
-              <Favorite />
-            </Button>
+            {
+              buttonShow && <Button onClick={favourite_handler}
+                variant="outline-danger"
+                className='float-end'
+              >
+                <Favorite />
+              </Button>
+
+            }
+
 
           </div>
 
@@ -52,7 +108,7 @@ function CardDetail() {
 
         </div>
         <div className='container border border-info p-4 d-flex aligns-items-center justify-content-center text-light fs-4'>
-          
+
           {toolDescription}
         </div>
 
