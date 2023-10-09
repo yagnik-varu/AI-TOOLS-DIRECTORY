@@ -14,7 +14,7 @@ function CardDetail() {
   const [toolIndex, setToolIndex] = useState("")
   const [currentUser, setCurrentUser] = useState("")
   const [buttonShow, setButtonShow] = useState(true)
-  const [favourite_tool, setFavourite_tool] = useState([])
+  const [favourite_tool, setFavourite_tool] = useState("")
 
 
   const cardDetails = () => {
@@ -42,33 +42,23 @@ function CardDetail() {
       }
     })
       .then(response => {
-        
-
-
-
         console.log("add to favourite")
-
       })
 
   }
 
   useEffect(() => {
-
-    if (favourite_tool.length > 0) {
+    if (favourite_tool) {
       let tmp = favourite_tool.split(",")
-      console.log(tmp)
       for (var i of tmp) {
         let tmp2 = i.split("/")
-        console.log(tmp2)
-        console.log(tmp2[0] === toolDocument,tmp2[1] === toolCollection , tmp2[2], toolIndex)
-        if (tmp2[0] === toolDocument && tmp2[1] === toolCollection && tmp2[2] === toolIndex) {
+        if ((tmp2[0] === toolDocument) && (tmp2[1] === toolCollection) && (parseInt(tmp2[2]) === parseInt(toolIndex))) {
           console.log("inside if")
           setButtonShow(false)
         }
       }
 
     }
-
   }, [favourite_tool])
 
   useEffect(() => {

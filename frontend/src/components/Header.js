@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
-import ImageTools from "./ImageTools";
-import axios from "axios";
+// import ImageTools from "./ImageTools";
+// import axios from "axios";
 
 
 import React, { useEffect, useState } from 'react'
@@ -12,28 +12,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavDropdown } from 'react-bootstrap';
 
 function Header() {
-  // const [currKey, setCurrKey] = useState("")
-  // const [respons, setResponse] = useState(null)
-  // const [document, setDocument] = useState("")
-
-  // const nav_key = {
-  //   image: ["Image upscaller", "Image Genrators", "Image Editors"],
-  //   voice: ["Voice","Voice"],
-  //   media: ["Audio", "Design", "Music", "Make presentation"],
-  // }
-
-  // function http_tool(e) {
-  //   axios.get('http://127.0.0.1:8000/data/', {
-  //     params: {
-  //       keyFeild: e,
-  //       keyDoc: currKey
-  //     }
-  //   })
-  //     .then(response => {
-  //       setResponse(response.data);
-  //     })
-  // }
-  // const [colorChange,setColorChange] = useState(false)
+  
 
   var isLoggedIn = false
   if (localStorage.getItem('email')) {
@@ -55,53 +34,7 @@ function Header() {
 
   return (
     <>
-      {/* <nav className="navbar navbar-expand-lg navbar-light bg-transperent">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            AI TOOLS DIRECTORY
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="">
-                  Home
-                </Link>
-              </li>
-
-              <select class="form-select" aria-label="Default select example" onChange={(e) => setCurrKey(e.target.value)}>
-                <option selected>select</option>
-                <option value="image">image</option>
-                <option value="voice">voice</option>
-                <option value="media">media</option>
-               
-              </select>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Favourite
-                </a>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="login">
-                  login
-                </Link>
-              </li>
-            </ul>
-        
-          </div>
-        </div>
-      </nav> */}
+      
 
 
 
@@ -110,34 +43,45 @@ function Header() {
 
 
       <div className=" container">
-      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top ' : 'header-color fixed-top'}  data-bs-theme=" ">
+      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top justify-content-between' : 'header-color fixed-top justify-content-between'}  data-bs-theme=" ">
         <Container className='container-fluid '>
           <Navbar.Brand>
             <Link to='' className="text-decoration-none">
-           <span className=" text-light app-logo" > AI TOOLS DIRECTORY</span>
+           <span className=" text-info app-logo" > AI TOOLS DIRECTORY</span>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-            <Nav className="me-7 gap-1.5 lg:gap-5">
-              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><span>Home</span></NavLink>
+          <Navbar.Collapse className="mr-5 justify-content-around" id="basic-navbar-nav">
+            <Nav className="me-7 gap-1.5 lg:gap-5 ">
+              {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><span>Home</span></NavLink> */}
               {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plants">home </NavLink> */}
               {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plantcare"><SpaIcon /> <span>Plant Care</span></NavLink> */}
-              <NavDropdown title={"tool"} className='nav-dropdown' id="nav-dropdown" >
+              <NavDropdown title={"Tool"} className='nav-dropdown' id="nav-dropdown" >
                 <NavDropdown.Item>
-                  <NavLink className='navLink' to="image">Image</NavLink>
+                  <NavLink className='navLink text-decoration-none text-black' to="image">Image</NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <NavLink className='navLink' to="media">Media</NavLink>
+                  <NavLink className='navLink text-decoration-none text-black' to="media">Media</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink className='navLink text-decoration-none text-black' to="coding">Coding</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink className='navLink text-decoration-none text-black' to="chatbot">Chatbots</NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavLink className={colorChange ? 'navLink-scroll text-decoration-none text-light' : 'navLink text-decoration-none text-light'} to="login">
+
+              {/* <NavLink className={colorChange ? 'navLink-scroll text-decoration-none text-light' : 'navLink text-decoration-none text-light '} to="login">
                 
                 {isLoggedIn ? 'LogOut' : 'Login'}
-              </NavLink>
+              </NavLink> */}
 
               {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={plants&page=}><ForestIcon /> <span>Plants</span></NavLink> */}
             </Nav>
+            <NavLink className={colorChange ? 'navLink-scroll text-decoration-none text-warning' : 'navLink text-decoration-none text-warning '} to="login">
+                
+                {isLoggedIn ? 'LogOut' : 'Login'}
+              </NavLink>
           </Navbar.Collapse>
         </Container>
       </Navbar>

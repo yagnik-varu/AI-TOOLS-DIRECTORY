@@ -7,8 +7,8 @@ const django_url = "http://127.0.0.1:8000"
 
 function Login() {
   const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [profile_uri, setProfile_uri] = useState('')
+  // const [name, setName] = useState('')
+  // const [profile_uri, setProfile_uri] = useState('')
 
 
 
@@ -16,9 +16,9 @@ function Login() {
 
     signInWithPopup(auth, provider).then((data) => {
       console.log(data)
-      setName(data.user.displayName)
+      // setName(data.user.displayName)
       setEmail(data.user.email)
-      setProfile_uri(data.user.photoURL)
+      // setProfile_uri(data.user.photoURL)
       localStorage.setItem("email", data.user.email)
 
       axios.get(django_url + "/auth", {
@@ -51,11 +51,11 @@ function Login() {
 
       </div>
 
-      <button onClick={handleClick}>Signin With Google</button>
-      <button onClick={logout}>Logout</button>
-      <h3>{email}</h3>
-      <h3>{name}</h3>
-      <img src={profile_uri}></img>
+      <button className="btn btn-info " onClick={handleClick}>Signin With Google</button>
+      <div className="mt-3"></div>
+      <button className="btn btn-info " onClick={logout}>Logout</button>
+      <h3 className="text-light fs-1">{email}</h3>
+      {/* <img src={profile_uri}></img> */}
     </>
   )
 }

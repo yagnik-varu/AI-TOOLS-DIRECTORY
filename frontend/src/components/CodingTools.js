@@ -5,21 +5,21 @@ import axios from 'axios';
 import { ClassNames } from '@emotion/react';
 import "C:/collage work/AI-TOOLS-DIRECTORY/frontend/src/App.css"
 
-function ImageTools(props) {
+function CodingTools(props) {
   const [data, setData] = useState([])
   // const [key, setKey] = useState("")
   const [checkData, setCheckData] = useState(false)
-  const [currKey, setCurrKey] = useState("Image upscallers")
+  const [currKey, setCurrKey] = useState("Coding")
 
   const nav_key = {
-    image: ["Image upscallers", "Image Genrators", "Image Editors"]
+    coding: ["Coding"]
   }
 
   function http_tool(e) {
     axios.get('http://127.0.0.1:8000/data/', {
       params: {
         keyFeild: e,
-        keyDoc: "image"
+        keyDoc: "coding"
       }
     })
       .then(response => {
@@ -50,16 +50,16 @@ function ImageTools(props) {
     <>
 
 
-      <div className='' style={{marginTop: "100px"}}>
+      <div className='' style={{marginTop: "50px"}}>
 
 
 
         {/* <button onClick={() => http_tool()}>button</button> */}
         {/* rander sub navbar  */}
-        {
+        {/* {
           <div class="w-100 p-5 btn-group" role="group" aria-label="Basic checkbox toggle button group">
             {
-              nav_key["image"].map((e) => (
+              nav_key["coding"].map((e) => (
                 <button className='btn btn-outline-info' onClick={() =>{
                   http_tool(e)
                   localStorage.setItem("curr_key", e)
@@ -67,7 +67,7 @@ function ImageTools(props) {
               ))
             }
           </div >
-        }
+        } */}
             {
 
               data && (
@@ -94,4 +94,4 @@ function ImageTools(props) {
       )
 }
 
-      export default ImageTools
+      export default CodingTools

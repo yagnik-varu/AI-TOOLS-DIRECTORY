@@ -89,7 +89,8 @@ def migrations(request):
 
 def data(request):
     field={"Image upscallers":"imageupscalers","Image Genrators":"imageGenerators","Image Editors":"imageEditors",
-           "Voice":"voice","Audio":"audio","Design":"design","Music":"music","Make presentation":"presentationMaker"}
+           "Voice":"voice","Audio":"audio","Design":"design","Music":"music","Make presentation":"presentationMaker",
+           "Coding":"coding","Chatbots":"chatbots"}
     # doc={"image_key":"image","media_key":"media","voice_key":"voice","coding_key":"coding","chatbots_key":"chatbots"}
     req=request.GET
     fieldname=field[req.get("keyFeild")]
@@ -105,9 +106,14 @@ def favourite(request):
     user=req.get("currentUser")
     link=document+"/"+collection+"/"+index
     print(link,user)
-    root_ref_user.document(user).update({
+    try:
+        root_ref_user.document(user).update({
         "u_favourite_tool": firestore.ArrayUnion([link])
-    })
+        })
+    except:
+        root_ref_user.document(user).set({
+        "u_favourite_tool": firestore.ArrayUnion([link])
+        })
     # documet_data=root_ref_user.document(user).get(transaction=transaction).to_dict()
     return HttpResponse("data saved")
 

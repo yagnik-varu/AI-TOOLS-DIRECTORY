@@ -32,18 +32,18 @@ function CardFormate(props) {
     <Card style={{ width: 'auto',backgroundColor: 'rgba(4, 44, 84, 1)' }} className='mt-3 m-2'  bg=''>
       <Card.Img variant="top" src={props.image} style={{height: "250px"}}  />
       <Card.Body>
-        <Card.Title className='text-light'>{props.name}</Card.Title>
-        <Card.Text className='text-light' >
+        <Card.Title className='text-light text-center fs-3'>{props.name}</Card.Title>
+        {/* <Card.Text className='text-light' >
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
-        </Card.Text>
+        </Card.Text> */}
       </Card.Body>
-      <ListGroup className="list-group-flush" >
+      {/* <ListGroup className="list-group-flush" >
         <ListGroup.Item className='text-light' style={{backgroundColor: 'rgba(4, 44, 84, 1)'}} >Cras justo odio</ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
+      </ListGroup> */}
+      <Card.Body className='justify-content-center'>
         {/* <Card.Link to="carddetail">know more</Card.Link> */}
-        <Link className="btn click-button text-light" style={style} to="/carddetail" onClick={() => cardDetails(props.name)}>
+        <Link className="btn click-button text-light " style={style} to="/carddetail" onClick={() => cardDetails(props.name)}>
             know more
           </Link>
           {/* <Button

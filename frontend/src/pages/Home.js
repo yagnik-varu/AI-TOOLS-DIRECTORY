@@ -140,7 +140,7 @@ function Home() {
       <div className="centered-text row row align-items-center">
         <div className='col-sm-8'>
           <h1 className='fw-bolder fs-1'>Welcome to AI Tool Directory</h1>
-          <p>find your tool easily</p>
+          <p>FIND Your Tool EASILY</p>
           
           </div>
         <div className="col-sm-4 home-image ">
@@ -151,7 +151,7 @@ function Home() {
     </div>
     </div >
     <div className='container-fluid latest-content'>
-      <h1 > lets get latest tool</h1>
+      <h1 > Let's get latest tool</h1>
       <ImageTools/>
 
     </div>
